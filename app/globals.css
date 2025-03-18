@@ -1,0 +1,168 @@
+
+@keyframes dropPiece {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes winner {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.gameB {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  padding: 2rem;
+}
+
+
+.status {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.status h2 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+
+.status h2:contains("wins") {
+  animation: winner 1s ease infinite;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+.circles {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  animation: dropPiece 0.5s ease-out;
+}
+
+.circles:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(83, 73, 73, 0.5);
+}
+
+
+.circles[style*="background:red"] {
+  background: linear-gradient(145deg, #ff4d4d, #ff0000) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.circles[style*="background:blue"] {
+  background: linear-gradient(145deg, #4d79ff, #0044ff) !important;
+  box-shadow: 0 0 15px rgba(0, 68, 255, 0.3);
+}
+
+.circles[style*="background:white"] {
+  background: rgb(255, 255, 255) !important;
+
+}
+
+
+.reset-button {
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.reset-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.reset-button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .circles {
+    width: 60px;
+    height: 60px;
+  }
+
+  .status h2 {
+    font-size: 1.5rem;
+  }
+
+  .reset-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .circles {
+    width: 50px;
+    height: 50px;
+  }
+
+  .container {
+    padding: 0.5rem;
+  }
+
+  .status {
+    padding: 0.8rem 1.5rem;
+  }
+}
